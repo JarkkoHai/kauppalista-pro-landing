@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kiitos tuestasi! – Kauppalista Pro</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --emerald: #059669; --emerald-light: #d1fae5; --emerald-dark: #047857;
+      --slate: #0f172a; --slate-mid: #334155; --bg: #f8fafc; --pink: #f43f5e;
+      --yellow: #fbbf24;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--slate); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; }
+
+    .card {
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.10);
+      padding: 64px 56px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--emerald), var(--pink));
+    }
+
+    .confetti {
+      font-size: 64px;
+      margin-bottom: 24px;
+      display: block;
+      animation: pop 0.6s ease both;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      color: var(--slate-mid);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    .charity-box {
+      background: var(--emerald-light);
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+    .charity-label {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--emerald-dark);
+      margin-bottom: 8px;
+    }
+    .charity-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--emerald-dark);
+      margin-bottom: 8px;
+    }
+    .charity-desc {
+      color: var(--emerald-dark);
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .email-note {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--slate-mid);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .email-note strong { color: var(--slate); }
+
+    .vat-note {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 32px;
+    }
+
+    .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--emerald); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; padding: 14px 28px; border-radius: 14px; text-decoration: none; transition: all 0.2s; }
+    .btn-primary:hover { background: var(--emerald-dark); transform: translateY(-2px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--slate); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; padding: 14px 28px; border-radius: 14px; text-decoration: none; border: 2px solid #e2e8f0; transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--emerald); color: var(--emerald); transform: translateY(-2px); }
+
+    .share-section { margin-top: 48px; padding-top: 32px; border-top: 1px solid #f1f5f9; }
+    .share-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate-mid); margin-bottom: 16px; }
+    .share-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 12px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
+    .share-wa { background: #25D366; color: white; }
+    .share-wa:hover { background: #128C7E; transform: translateY(-2px); }
+    .share-copy { background: #f1f5f9; color: var(--slate); }
+    .share-copy:hover { background: #e2e8f0; transform: translateY(-2px); }
+
+    footer { margin-top: 40px; font-size: 12px; color: #94a3b8; text-align: center; }
+    footer a { color: var(--emerald); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .card { padding: 40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <span class="confetti">🎉</span>
+    <h1 data-fi="Kiitos tuestasi!" data-en="Thank you for your support!">Kiitos tuestasi!</h1>
+    <p class="subtitle" data-fi="Maksusi on vastaanotettu. Olet auttanut pitämään Kauppalista Pron ilmaisena kaikille – ja samalla teet hyvää lasten ja nuorten hyväksi." data-en="Your payment has been received. You've helped keep Shopping List Pro free for everyone – and at the same time you're doing good for children and youth.">
+      Maksusi on vastaanotettu. Olet auttanut pitämään Kauppalista Pron ilmaisena kaikille – ja samalla teet hyvää lasten ja nuorten hyväksi.
+    </p>
+
+    <div class="charity-box">
+      <div class="charity-label" data-fi="Lahjoituksen saaja" data-en="Donation recipient">Lahjoituksen saaja</div>
+      <div class="charity-text" data-fi="❤️ 20% maksustasi ohjataan" data-en="❤️ 20% of your payment goes to">❤️ 20% maksustasi ohjataan</div>
+      <p class="charity-desc" data-fi="Ilmoitamme lahjoituksen saavan järjestön sinulle henkilökohtaisesti sähköpostilla kuittisi yhteydessä. Tällä hetkellä tuemme suomalaisten lasten ja nuorten hyvinvointia." data-en="We will personally notify you of the recipient organisation by email together with your receipt. Currently we support the wellbeing of Finnish children and youth.">
+        Ilmoitamme lahjoituksen saavan järjestön sinulle henkilökohtaisesti sähköpostilla kuittisi yhteydessä. Tällä hetkellä tuemme suomalaisten lasten ja nuorten hyvinvointia.
+      </p>
+    </div>
+
+    <div class="email-note">
+      📧 <strong data-fi="Kuitti lähetetty sähköpostiisi." data-en="Receipt sent to your email.">Kuitti lähetetty sähköpostiisi.</strong>
+      <span data-fi=" Kuitissa näkyy järjestön tiedot sekä maksun erittely ALV:n kanssa." data-en=" The receipt includes the organisation details and payment breakdown including VAT."> Kuitissa näkyy järjestön tiedot sekä maksun erittely ALV:n kanssa.</span>
+    </div>
+
+    <div class="vat-note" data-fi="Maksu sisältää arvonlisäveron 25,5%. Maksun käsittelijä: Oy Westmanns Ab." data-en="Payment includes VAT 25.5%. Payment processor: Oy Westmanns Ab.">
+      Maksu sisältää arvonlisäveron 25,5%. Maksun käsittelijä: Oy Westmanns Ab.
+    </div>
+
+    <div class="btn-group">
+      <a href="https://kauppalista-pro.web.app" class="btn-primary">
+        🛒 <span data-fi="Avaa ostoslista" data-en="Open shopping list">Avaa ostoslista</span>
+      </a>
+      <a href="https://kauppalistapro.fi" class="btn-secondary">
+        ← <span data-fi="Takaisin etusivulle" data-en="Back to home">Takaisin etusivulle</span>
+      </a>
+    </div>
+
+    <div class="share-section">
+      <div class="share-label" data-fi="Jaa kaverille" data-en="Share with a friend">Jaa kaverille</div>
+      <div class="share-btns">
+        <a class="share-btn share-wa" href="https://wa.me/?text=Löysin%20tosi%20kätevän%20ilmaisen%20ostoslistan%20jota%20voi%20jakaa%20perheelle%20reaaliajassa%3A%20https%3A%2F%2Fkauppalistapro.fi" target="_blank">
+          💬 <span data-fi="Jaa WhatsAppissa" data-en="Share on WhatsApp">Jaa WhatsAppissa</span>
+        </a>
+        <button class="share-btn share-copy" onclick="copyLink()">
+          🔗 <span id="copyText" data-fi="Kopioi linkki" data-en="Copy link">Kopioi linkki</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Kauppalista Pro · <a href="https://kauppalistapro.fi">kauppalistapro.fi</a></p>
+  </footer>
+
+  <script>
+    // Language detection from URL param or browser
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    let currentLang = urlLang || (navigator.language.startsWith('fi') ? 'fi' : 'en');
+
+    function applyLang() {
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll('[data-fi]').forEach(el => {
+        el.textContent = currentLang === 'fi' ? el.dataset.fi : el.dataset.en;
+      });
+    }
+    applyLang();
+
+    function copyLink() {
+      navigator.clipboard.writeText('https://kauppalistapro.fi').then(() => {
+        const btn = document.getElementById('copyText');
+        btn.textContent = currentLang === 'fi' ? '✅ Kopioitu!' : '✅ Copied!';
+        setTimeout(() => {
+          btn.textContent = currentLang === 'fi' ? 'Kopioi linkki' : 'Copy link';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
