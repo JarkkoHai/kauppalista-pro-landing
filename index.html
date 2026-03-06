@@ -360,7 +360,6 @@
 
   <script>
     let currentLang = 'fi';
-    let selectedAmount = 5;
 
     function toggleLang() {
       currentLang = currentLang === 'fi' ? 'en' : 'fi';
@@ -369,25 +368,6 @@
       document.querySelectorAll('[data-fi]').forEach(el => {
         el.textContent = currentLang === 'fi' ? el.dataset.fi : el.dataset.en;
       });
-      updateDonateBtn();
-    }
-
-    function selectAmount(amount, btn) {
-      selectedAmount = amount;
-      document.querySelectorAll('.donation-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      updateDonateBtn();
-    }
-
-    function updateDonateBtn() {
-      const btn = document.getElementById('donateBtnText');
-      btn.textContent = currentLang === 'fi'
-        ? `Maksa vapaaehtoisesti ${selectedAmount}€`
-        : `Pay voluntarily ${selectedAmount}€`;
-    }
-
-    function donate() {
-      window.open('https://buy.stripe.com/eVq28temTbXN9ooaUXcIE00', '_blank');
     }
 
     function handleSubmit(e) {
