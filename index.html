@@ -57,6 +57,8 @@
     .btn-primary:hover { background: var(--emerald-dark); transform: translateY(-2px); }
     .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--slate); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; padding: 18px 36px; border-radius: 16px; text-decoration: none; border: 2px solid #e2e8f0; transition: all 0.2s; }
     .btn-secondary:hover { border-color: var(--emerald); color: var(--emerald); transform: translateY(-2px); }
+    .btn-donate { display: inline-flex; align-items: center; gap: 8px; background: #fff1f3; color: var(--pink); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; padding: 12px 24px; text-decoration: none; border: 2px dashed rgba(244,63,94,0.5); border-radius: 12px; transition: all 0.2s; margin-top: 24px; letter-spacing: 0.03em; }
+    .btn-donate:hover { background: #ffe4e6; border-color: var(--pink); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,63,94,0.15); }
 
     .mockup-wrap { margin-top: 80px; animation: fadeUp 0.8s ease 0.4s both; }
     .mockup { background: white; border-radius: 32px; box-shadow: 0 40px 120px rgba(0,0,0,0.12); padding: 32px; width: min(480px, 90vw); }
@@ -184,6 +186,10 @@
       <a href="https://kauppalista-pro.web.app" class="btn-primary" target="_blank">🚀 <span data-fi="Kokeile ilmaiseksi" data-en="Try for free">Kokeile ilmaiseksi</span></a>
       <a href="#miten-toimii" class="btn-secondary"><span data-fi="Miten toimii?" data-en="How it works?">Miten toimii?</span></a>
     </div>
+    <a href="https://buy.stripe.com/eVq28temTbXN9ooaUXcIE00" target="_blank" class="btn-donate">
+      ❤️ <span data-fi="❤️ Maksa vapaaehtoisesti – klikkaa tästä" data-en="❤️ Pay voluntarily – click here">❤️ Maksa vapaaehtoisesti – klikkaa tästä</span>
+    </a>
+    <p style="font-size: 12px; color: var(--slate-mid); margin-top: 6px;" data-fi="💚 20% maksusta tukee lasten ja nuorten hyvinvointia" data-en="💚 20% of payment supports children's wellbeing">💚 20% maksusta tukee lasten ja nuorten hyvinvointia</p>
     <div class="mockup-wrap">
       <div class="mockup">
         <div class="mockup-header">
@@ -266,7 +272,7 @@
       Kauppalista Pro on ilmainen kaikille. Jos arvostat palvelua, voit tukea sen kehitystä vapaaehtoisella maksulla. 20% maksuista ohjataan lasten ja nuorten hyvinvointia tukevaan toimintaan.
     </p>
     <div class="donation-charity-note">
-      💚 <span data-fi="Lahjoituksen saava järjestö ilmoitetaan jokaiselle maksajalle henkilökohtaisesti sähköpostilla kuittisi yhteydessä." data-en="The recipient organisation will be communicated personally to each payer by email together with their receipt.">Lahjoituksen saava järjestö ilmoitetaan jokaiselle maksajalle henkilökohtaisesti sähköpostilla kuittisi yhteydessä.</span>
+      💚 <span data-fi="20% maksustasi ohjataan Tukikummit-säätiölle, joka tukee suomalaisten lasten ja nuorten hyvinvointia." data-en="The recipient organisation will be communicated personally to each payer by email together with their receipt.">Lahjoituksen saava järjestö ilmoitetaan jokaiselle maksajalle henkilökohtaisesti sähköpostilla kuittisi yhteydessä.</span>
     </div>
     <div class="donation-vat" data-fi="Maksu sisältää arvonlisäveron 25,5%. Maksun käsittelijä: Oy Westmanns Ab." data-en="Payment includes VAT 25.5%. Payment processor: Oy Westmanns Ab.">Maksu sisältää arvonlisäveron 25,5%. Maksun käsittelijä: Oy Westmanns Ab.</div>
     <a href="https://buy.stripe.com/eVq28temTbXN9ooaUXcIE00" target="_blank" class="donate-submit">
