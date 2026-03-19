@@ -398,5 +398,336 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+
+  <!-- ========================================
+    Kauppalista Pro — Pro+ ehdotusbotti
+  ======================================== -->
+  <style>
+    #kl-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+    }
+    #kl-bubble {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #1a6b3c;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 16px rgba(26,107,60,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-left: auto;
+    }
+    #kl-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(26,107,60,0.45); }
+    #kl-dot {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 14px;
+      height: 14px;
+      background: #e53935;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: none;
+    }
+    #kl-chat {
+      display: none;
+      flex-direction: column;
+      width: 320px;
+      max-height: 480px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 1px solid #e0e0e0;
+    }
+    #kl-chat.open { display: flex; animation: klSlideUp 0.25s ease; }
+    @keyframes klSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    #kl-header {
+      background: #1a6b3c;
+      color: #fff;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #kl-header-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    #kl-header-info { flex: 1; }
+    #kl-header-name { font-weight: 600; font-size: 14px; }
+    #kl-header-status { font-size: 12px; opacity: 0.85; }
+    #kl-close { background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer; font-size: 20px; padding: 0; line-height: 1; }
+    #kl-close:hover { color: #fff; }
+    #kl-messages {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      background: #f9f9f7; min-height: 200px;
+    }
+    .kl-msg {
+      max-width: 82%; padding: 10px 13px; border-radius: 14px;
+      line-height: 1.45; font-size: 14px; word-break: break-word;
+    }
+    .kl-msg.bot {
+      background: #fff; border: 1px solid #e8e8e8;
+      align-self: flex-start; border-bottom-left-radius: 4px; color: #222;
+    }
+    .kl-msg.user {
+      background: #1a6b3c; color: #fff;
+      align-self: flex-end; border-bottom-right-radius: 4px;
+    }
+    .kl-typing {
+      display: flex; gap: 4px; align-items: center;
+      padding: 12px 14px; background: #fff; border: 1px solid #e8e8e8;
+      border-radius: 14px; border-bottom-left-radius: 4px; align-self: flex-start;
+    }
+    .kl-typing span {
+      width: 7px; height: 7px; background: #aaa;
+      border-radius: 50%; animation: klBounce 1.2s infinite;
+    }
+    .kl-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .kl-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes klBounce {
+      0%,60%,100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
+    }
+    #kl-quickreplies { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 16px 10px; background: #f9f9f7; }
+    .kl-quick {
+      background: #fff; border: 1px solid #1a6b3c; color: #1a6b3c;
+      border-radius: 20px; padding: 6px 13px; font-size: 13px;
+      cursor: pointer; transition: background 0.15s, color 0.15s; white-space: nowrap;
+    }
+    .kl-quick:hover { background: #1a6b3c; color: #fff; }
+    #kl-inputrow {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 14px; border-top: 1px solid #eee; background: #fff;
+    }
+    #kl-input {
+      flex: 1; border: 1px solid #ddd; border-radius: 22px;
+      padding: 9px 14px; font-size: 14px; outline: none;
+      font-family: inherit; background: #f7f7f7;
+      resize: none; line-height: 1.4; max-height: 80px; overflow-y: auto;
+    }
+    #kl-input:focus { border-color: #1a6b3c; background: #fff; }
+    #kl-send {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #1a6b3c; color: #fff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.15s;
+    }
+    #kl-send:hover { background: #155530; }
+    #kl-send:disabled { background: #ccc; cursor: default; }
+    #kl-send svg { width: 18px; height: 18px; }
+    @media (max-width: 400px) {
+      #kl-widget { right: 12px; bottom: 12px; }
+      #kl-chat { width: calc(100vw - 24px); }
+    }
+  </style>
+
+  <div id="kl-widget">
+    <div id="kl-chat">
+      <div id="kl-header">
+        <div id="kl-header-avatar">🛒</div>
+        <div id="kl-header-info">
+          <div id="kl-header-name">Kauppalista Pro</div>
+          <div id="kl-header-status">Vastaa yleensä heti</div>
+        </div>
+        <button id="kl-close" onclick="klClose()">×</button>
+      </div>
+      <div id="kl-messages"></div>
+      <div id="kl-quickreplies"></div>
+      <div id="kl-inputrow">
+        <textarea id="kl-input" placeholder="Kirjoita viesti..." rows="1"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();klSend()}"
+          oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+        <button id="kl-send" onclick="klSend()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div style="position:relative;display:inline-block">
+      <button id="kl-bubble" onclick="klToggle()">🛒</button>
+      <div id="kl-dot"></div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const SYSTEM_PROMPT = `Olet Kauppalista Pro -palvelun ystävällinen avustaja. Tehtäväsi on auttaa käyttäjiä ja esitellä Pro+-versiota luontevasti.
+
+Kauppalista Pro -palvelu:
+- Ilmainen ostoslistapalvelu suomalaisille perheille
+- Ei rekisteröitymistä, toimii selaimessa heti
+- Jaettava reaaliajassa koodilla (esim. "Huttunen")
+- Toimii kaikilla laitteilla
+
+Pro+ -ominaisuudet (tulossa / kehitteillä):
+- Resepti-ideat ja automaattinen ainesten lisäys listaan
+- Kategorioitu ostoslista (hedelmät, maitotuotteet, jne.)
+- Tallennushistoria ja suosikkilistat
+- Useita listoja samaan aikaan
+- Mainokseton käyttökokemus
+
+Vapaaehtoinen tuki:
+- Käyttäjä voi tukea palvelua vapaaehtoisella maksulla
+- 20% maksuista menee lasten ja nuorten hyvinvointiin
+- Maksulinkki: https://buy.stripe.com/eVq28temTbXN9ooaUXcIE00
+
+Ohjeet sinulle:
+- Puhu suomea, ole lämmin ja tiivis (max 2-3 lausetta per viesti)
+- Älä ole tyrkyttävä — ehdota Pro+:aa luontevasti kun se sopii keskusteluun
+- Jos käyttäjä kysyy hinnoittelusta, kerro että Pro+ on saatavilla 2,99€/kk
+- Älä keksi ominaisuuksia joita ei ole lueteltu
+- Jos et tiedä vastausta, sano se rehellisesti`;
+
+    let history = [];
+    let isOpen = false;
+    let hasShownAuto = false;
+
+    setTimeout(function() {
+      if (!isOpen && !hasShownAuto) {
+        hasShownAuto = true;
+        document.getElementById('kl-dot').style.display = 'block';
+        klOpen();
+        klBotMessage('Hei! 👋 Onko sinulla kysyttävää Kauppalista Prosta? Voin kertoa myös Pro+-versiosta.');
+        showQuickReplies(['Mitä Pro+ sisältää?', 'Miten jaan listan?', 'Onko se ilmainen?']);
+      }
+    }, 18000);
+
+    window.klToggle = function() { if (isOpen) klClose(); else klOpen(); };
+    window.klOpen = function() {
+      isOpen = true;
+      document.getElementById('kl-chat').classList.add('open');
+      document.getElementById('kl-dot').style.display = 'none';
+      if (history.length === 0) {
+        setTimeout(function() {
+          klBotMessage('Hei! 👋 Kysyttävää palvelusta tai haluatko kuulla Pro+-versiosta?');
+          showQuickReplies(['Mitä Pro+ sisältää?', 'Miten jaan listan?', 'Onko se ilmainen?']);
+        }, 400);
+      }
+      setTimeout(function() { document.getElementById('kl-input').focus(); }, 300);
+    };
+    window.klClose = function() {
+      isOpen = false;
+      document.getElementById('kl-chat').classList.remove('open');
+    };
+
+    function showQuickReplies(options) {
+      const qr = document.getElementById('kl-quickreplies');
+      qr.innerHTML = '';
+      options.forEach(function(opt) {
+        const btn = document.createElement('button');
+        btn.className = 'kl-quick';
+        btn.textContent = opt;
+        btn.onclick = function() { qr.innerHTML = ''; klSendText(opt); };
+        qr.appendChild(btn);
+      });
+    }
+
+    function klBotMessage(text) {
+      addMessage('bot', text);
+      history.push({ role: 'assistant', content: text });
+    }
+
+    function addMessage(role, text) {
+      const msgs = document.getElementById('kl-messages');
+      const div = document.createElement('div');
+      div.className = 'kl-msg ' + role;
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      return div;
+    }
+
+    function addTyping() {
+      const msgs = document.getElementById('kl-messages');
+      const div = document.createElement('div');
+      div.className = 'kl-typing';
+      div.id = 'kl-typing-indicator';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('kl-typing-indicator');
+      if (t) t.remove();
+    }
+
+    window.klSend = function() {
+      const input = document.getElementById('kl-input');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      input.style.height = 'auto';
+      klSendText(text);
+    };
+
+    window.klSendText = function(text) {
+      document.getElementById('kl-quickreplies').innerHTML = '';
+      addMessage('user', text);
+      history.push({ role: 'user', content: text });
+      const sendBtn = document.getElementById('kl-send');
+      sendBtn.disabled = true;
+      addTyping();
+
+      fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'anthropic-dangerous-direct-browser-calls': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 300,
+          system: SYSTEM_PROMPT,
+          messages: history.filter(function(m) { return m.role !== 'assistant' || history.indexOf(m) > 0; })
+        })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        removeTyping();
+        sendBtn.disabled = false;
+        const reply = data.content && data.content[0] && data.content[0].text
+          ? data.content[0].text
+          : 'Pahoittelut, yhteys katkesi. Kokeile hetken kuluttua uudelleen.';
+        klBotMessage(reply);
+        const lower = text.toLowerCase();
+        if (lower.includes('pro') || lower.includes('ominaisuus') || lower.includes('hinta')) {
+          showQuickReplies(['Milloin Pro+ tulee?', 'Tuen kehitystä', 'Miten jaan listan?']);
+        } else if (lower.includes('jaa') || lower.includes('koodi') || lower.includes('perhe')) {
+          showQuickReplies(['Mitä Pro+ sisältää?', 'Tuen kehitystä']);
+        } else {
+          showQuickReplies(['Mitä Pro+ sisältää?', 'Miten toimii?']);
+        }
+      })
+      .catch(function() {
+        removeTyping();
+        sendBtn.disabled = false;
+        klBotMessage('Yhteysvirhe — kokeile hetken päästä uudelleen.');
+      });
+    };
+  })();
+  </script>
 </body>
 </html>
