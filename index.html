@@ -715,7 +715,23 @@ Ohjeet sinulle:
           ? data.content[0].text
           : 'Pahoittelut, yhteys katkesi. Kokeile hetken kuluttua uudelleen.';
         klBotMessage(reply);
-        const lower = text.toLowerCase();
+
+// CTA-nappi jos vastaus liittyy Pro+:aan
+const replyLower = reply.toLowerCase();
+if (replyLower.includes('pro') || replyLower.includes('2,99') || replyLower.includes('ominaisuus') || replyLower.includes('resepti')) {
+  setTimeout(function() {
+    const msgs = document.getElementById('kl-messages');
+    const btn = document.createElement('a');
+    btn.href = 'https://kauppalista-pro.web.app';
+    btn.target = '_blank';
+    btn.textContent = '👑 Kokeile Pro+ – maksa täältä';
+    btn.style.cssText = 'display:block; background:linear-gradient(135deg,#059669,#047857); color:white; text-decoration:none; padding:12px 20px; border-radius:12px; font-weight:700; font-size:13px; text-align:center; margin:4px 0;';
+    msgs.appendChild(btn);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 300);
+}
+
+    const lower = text.toLowerCase();
         if (lower.includes('pro') || lower.includes('ominaisuus') || lower.includes('hinta')) {
           showQuickReplies(['Milloin Pro+ tulee?', 'Tuen kehitystä', 'Miten jaan listan?']);
         } else if (lower.includes('jaa') || lower.includes('koodi') || lower.includes('perhe')) {
