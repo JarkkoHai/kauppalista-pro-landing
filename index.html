@@ -210,11 +210,6 @@
     footer a { color: var(--emerald-light); text-decoration: none; }
     .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
 
-    /* Privacy panel */
-    .privacy-tab { cursor: pointer; transition: all 0.2s; }
-    .privacy-tab.active-tab { background: var(--emerald) !important; color: white !important; }
-    #privacy-panel { position: fixed; top: 0; right: -420px; width: min(420px, 100vw); height: 100vh; background: white; z-index: 1001; box-shadow: -8px 0 40px rgba(0,0,0,0.12); overflow-y: auto; transition: right 0.3s ease; display: flex; flex-direction: column; }
-    #privacy-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 1000; backdrop-filter: blur(2px); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -444,90 +439,6 @@
     </form>
   </section>
 
-  <!-- PRIVACY POLICY SLIDE-IN PANEL -->
-  <div id="privacy-overlay" onclick="closePrivacy()"></div>
-  <div id="privacy-panel">
-    <div style="padding:20px 24px; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; background:white; z-index:1;">
-      <div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-weight:800; font-size:1rem; color:#0f172a;">Tietosuojaseloste</div>
-        <div style="font-size:11px; color:#94a3b8; margin-top:2px;">Kauppalista Pro · Oy Westmanns Ab</div>
-      </div>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <button onclick="togglePrivacy('fi')" id="privacy-tab-fi" class="privacy-tab active-tab" style="padding:5px 14px; border-radius:999px; border:2px solid var(--emerald); background:var(--emerald); color:white; font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:11px;">FI</button>
-        <button onclick="togglePrivacy('en')" id="privacy-tab-en" class="privacy-tab" style="padding:5px 14px; border-radius:999px; border:2px solid var(--emerald); background:transparent; color:var(--emerald); font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:11px;">EN</button>
-        <button onclick="closePrivacy()" style="width:32px; height:32px; border-radius:50%; border:none; background:#f1f5f9; color:#64748b; cursor:pointer; font-size:20px; line-height:1;">×</button>
-      </div>
-    </div>
-    <div style="padding:24px; flex:1;">
-      <div id="privacy-fi" style="color:#475569; font-size:14px; line-height:1.8;">
-        <p style="margin-bottom:12px; font-size:12px; color:#94a3b8;"><strong>Päivitetty:</strong> 22.3.2026</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">1. Rekisterinpitäjä</h3>
-        <p style="margin-bottom:12px;">Kauppalista Pro (Oy Westmanns Ab)<br>Sähköposti: info@westmanns.fi</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">2. Mitä tietoja keräämme</h3>
-        <ul style="margin-bottom:12px; padding-left:18px;">
-          <li>Sähköpostiosoite tai käyttäjätunnus</li>
-          <li>Google-tilin tiedot (jos kirjaudut Google-tilillä)</li>
-          <li>Ostoslistan sisältö</li>
-          <li>Maksutiedot (käsittelee Stripe – emme tallenna korttitietoja)</li>
-          <li>Käyttölokit ja tekniset tiedot (Firebase Analytics)</li>
-        </ul>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">3. Tietojen käyttötarkoitus</h3>
-        <ul style="margin-bottom:12px; padding-left:18px;">
-          <li>Palvelun tarjoamiseen ja ylläpitoon</li>
-          <li>Pro+-tilauksen hallintaan</li>
-          <li>Palvelun kehittämiseen</li>
-          <li>Asiakasviestintään</li>
-        </ul>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">4. Kolmannet osapuolet</h3>
-        <ul style="margin-bottom:12px; padding-left:18px;">
-          <li><strong>Firebase (Google)</strong> – tietokanta, autentikointi ja analytiikka</li>
-          <li><strong>Stripe</strong> – maksunkäsittely</li>
-        </ul>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">5. Tietojen säilytys</h3>
-        <p style="margin-bottom:12px;">Tietoja säilytetään niin kauan kuin tili on aktiivinen. Voit pyytää tietojesi poistamista: info@westmanns.fi</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">6. Käyttäjän oikeudet</h3>
-        <p style="margin-bottom:12px;">Sinulla on oikeus tarkastaa, korjata ja poistaa tietosi. Ota yhteyttä: info@westmanns.fi</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">7. Evästeet</h3>
-        <p style="margin-bottom:12px;">Käytämme evästeitä kirjautumistietojen tallentamiseen. Emme käytä evästeitä markkinointiin.</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">8. Yhteystiedot</h3>
-        <p style="margin-bottom:12px;">Tietosuoja-asioissa: <a href="mailto:info@westmanns.fi" style="color:var(--emerald);">info@westmanns.fi</a></p>
-      </div>
-      <div id="privacy-en" style="color:#475569; font-size:14px; line-height:1.8; display:none;">
-        <p style="margin-bottom:12px; font-size:12px; color:#94a3b8;"><strong>Last updated:</strong> March 22, 2026</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">1. Data Controller</h3>
-        <p style="margin-bottom:12px;">Kauppalista Pro (Oy Westmanns Ab)<br>Email: info@westmanns.fi</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">2. Data We Collect</h3>
-        <ul style="margin-bottom:12px; padding-left:18px;">
-          <li>Email address or username</li>
-          <li>Google account information (if you sign in with Google)</li>
-          <li>Shopping list content</li>
-          <li>Payment information (processed by Stripe – we do not store card details)</li>
-          <li>Usage logs and technical data (Firebase Analytics)</li>
-        </ul>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">3. How We Use Your Data</h3>
-        <ul style="margin-bottom:12px; padding-left:18px;">
-          <li>Provide and maintain the service</li>
-          <li>Manage Pro+ subscriptions</li>
-          <li>Improve the service</li>
-          <li>Communicate with users</li>
-        </ul>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">4. Third Parties</h3>
-        <ul style="margin-bottom:12px; padding-left:18px;">
-          <li><strong>Firebase (Google)</strong> – database, authentication and analytics</li>
-          <li><strong>Stripe</strong> – payment processing</li>
-        </ul>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">5. Data Retention</h3>
-        <p style="margin-bottom:12px;">Data is retained as long as your account is active. Request deletion: info@westmanns.fi</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">6. Your Rights</h3>
-        <p style="margin-bottom:12px;">You have the right to access, correct and delete your data. Contact: info@westmanns.fi</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">7. Cookies</h3>
-        <p style="margin-bottom:12px;">We use cookies to store login information. We do not use cookies for marketing.</p>
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-weight:700; font-size:1rem; margin:20px 0 8px; color:#0f172a;">8. Contact</h3>
-        <p style="margin-bottom:12px;"><a href="mailto:info@westmanns.fi" style="color:var(--emerald);">info@westmanns.fi</a></p>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <div class="footer-links">
       <a href="https://kauppalista-pro.web.app" target="_blank" data-fi="Avaa ostoslista" data-en="Open app" data-sv="Öppna inköpslista">Avaa ostoslista</a>
@@ -569,24 +480,6 @@
       });
     }
 
-    function openPrivacy() {
-      document.getElementById('privacy-overlay').style.display = 'block';
-      document.getElementById('privacy-panel').style.right = '0';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePrivacy() {
-      document.getElementById('privacy-overlay').style.display = 'none';
-      document.getElementById('privacy-panel').style.right = '-420px';
-      document.body.style.overflow = '';
-    }
-
-    function togglePrivacy(lang) {
-      document.getElementById('privacy-fi').style.display = lang === 'fi' ? 'block' : 'none';
-      document.getElementById('privacy-en').style.display = lang === 'en' ? 'block' : 'none';
-      document.querySelectorAll('.privacy-tab').forEach(btn => btn.classList.remove('active-tab'));
-      document.getElementById('privacy-tab-' + lang).classList.add('active-tab');
-    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
