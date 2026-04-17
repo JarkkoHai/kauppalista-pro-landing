@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tietosuoja – Kauppalista Pro</title>
+  <meta name="description" content="Kauppalista Pro tietosuojaseloste. Oy Westmanns Ab." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://kauppalistapro.fi/privacy" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --emerald: #059669; --emerald-light: #d1fae5; --emerald-dark: #047857;
+      --slate: #0f172a; --slate-mid: #334155; --bg: #f8fafc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--slate); }
+
+    header { background: white; border-bottom: 1px solid #e2e8f0; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.08em; color: var(--slate); text-decoration: none; }
+    .logo span { color: var(--emerald); }
+    .back-btn { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.12em; font-size: 13px; color: var(--emerald); text-decoration: none; border: 2px solid var(--emerald); padding: 8px 18px; border-radius: 999px; transition: all 0.2s; }
+    .back-btn:hover { background: var(--emerald); color: white; }
+
+    main { max-width: 800px; margin: 60px auto; padding: 0 24px 80px; }
+
+    .page-header { margin-bottom: 48px; }
+    .page-label { font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 0.18em; color: var(--emerald); text-transform: uppercase; margin-bottom: 12px; }
+    .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 6vw, 3.6rem); letter-spacing: 0.04em; line-height: 1; color: var(--slate); margin-bottom: 16px; }
+    .page-meta { font-size: 13px; color: #94a3b8; }
+
+    .lang-tabs { display: flex; gap: 8px; margin-bottom: 40px; }
+    .lang-tab { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.12em; font-size: 13px; padding: 7px 20px; border-radius: 999px; border: 2px solid var(--emerald); background: transparent; color: var(--emerald); cursor: pointer; transition: all 0.2s; }
+    .lang-tab.active { background: var(--emerald); color: white; }
+
+    .content { display: none; }
+    .content.active { display: block; }
+
+    .content h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; color: var(--slate); margin: 40px 0 12px; padding-top: 32px; border-top: 1px solid #e2e8f0; }
+    .content h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .content p { color: var(--slate-mid); font-size: 15px; line-height: 1.8; margin-bottom: 14px; }
+    .content ul { color: var(--slate-mid); font-size: 15px; line-height: 1.8; margin: 0 0 14px 20px; }
+    .content ul li { margin-bottom: 6px; }
+    .content strong { color: var(--slate); font-weight: 500; }
+    .content a { color: var(--emerald); }
+
+    .rights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 12px 0 20px; }
+    .right-item { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; font-size: 14px; color: var(--slate-mid); }
+    .right-item strong { display: block; color: var(--emerald); font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; font-size: 13px; margin-bottom: 4px; }
+
+    footer { background: var(--slate); color: rgba(255,255,255,0.4); text-align: center; padding: 32px 24px; font-size: 13px; }
+    footer a { color: #6ee7b7; text-decoration: none; margin: 0 10px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="logo">Kauppalista <span>Pro</span></a>
+    <a href="/" class="back-btn">← Etusivu</a>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="page-label">Juridinen</div>
+      <h1 class="page-title">Tietosuojaseloste</h1>
+      <p class="page-meta">Päivitetty: 16.4.2026 · Voimassa: 16.4.2026</p>
+    </div>
+
+    <div class="lang-tabs">
+      <button class="lang-tab active" onclick="setLang('fi', this)">FI</button>
+      <button class="lang-tab" onclick="setLang('en', this)">EN</button>
+      <button class="lang-tab" onclick="setLang('sv', this)">SV</button>
+    </div>
+
+    <!-- FINNISH -->
+    <div class="content active" id="content-fi">
+      <h2>1. Rekisterinpitäjä</h2>
+      <p>Oy Westmanns Ab (Y-tunnus: 3296059-1), Suomi<br>Sähköposti: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+
+      <h2>2. Kerättävät tiedot</h2>
+      <p><strong>Tilitiedot:</strong></p>
+      <ul>
+        <li>Sähköpostiosoite</li>
+        <li>Todennustiedot (hallinnoitu Firebase Authenticationin kautta)</li>
+        <li>Näyttönimi (valinnainen)</li>
+      </ul>
+      <p><strong>Sovelluksen käyttötiedot:</strong></p>
+      <ul>
+        <li>Ostoslistat ja niiden sisältö</li>
+        <li>Listan jäsenet ja jakamisasetukset</li>
+        <li>Sovelluksen asetukset</li>
+      </ul>
+      <p><strong>Tekniset tiedot:</strong></p>
+      <ul>
+        <li>Laitetyyppi ja Android-versio</li>
+        <li>Sovelluksen versio</li>
+        <li>IP-osoite (kerätty Firebasen toimesta)</li>
+      </ul>
+      <p><strong>Biometriset tiedot (valinnainen):</strong> Jos otat biometrisen tunnistautumisen käyttöön, se käsitellään kokonaan laitteellasi. Emme vastaanota tai tallenna biometrisiä tietoja.</p>
+
+      <h2>3. Tietojen käyttötarkoitus</h2>
+      <p>Käytämme tietojasi:</p>
+      <ul>
+        <li>Reaaliaikaisen listojen synkronoinnin tarjoamiseen</li>
+        <li>Listojen jakamisen mahdollistamiseen käyttäjien välillä</li>
+        <li>Sovelluksen ominaisuuksien ja suorituskyvyn parantamiseen</li>
+        <li>Tärkeiden palveluilmoitusten lähettämiseen</li>
+      </ul>
+
+      <h2>4. Tekoälyominaisuudet (Pro+)</h2>
+      <p>Jos käytät tekoälyavustaja-ominaisuutta, ostoslistadataasi voidaan käsitellä Anthropicin Claude API:n kautta ehdotusten generoimiseksi. Emme tallenna tätä dataa käsittelyn jälkeen.</p>
+
+      <h2>5. Tietojen jakaminen</h2>
+      <p>Jaamme tietoja seuraavien tahojen kanssa:</p>
+      <ul>
+        <li><strong>Firebase (Google)</strong> — Todennus, reaaliaikainen tietokanta ja isännöinti</li>
+        <li><strong>Anthropic</strong> — Tekoälyominaisuudet (vain Pro+)</li>
+        <li><strong>Stripe</strong> — Maksujen käsittely (Pro+-tilaukset)</li>
+      </ul>
+      <p>Emme myy henkilötietojasi kolmansille osapuolille.</p>
+
+      <h2>6. Tietojen säilytys</h2>
+      <ul>
+        <li>Tili- ja listatietoja säilytetään niin kauan kuin tilisi on aktiivinen.</li>
+        <li>Voit pyytää tilisi ja kaikkien siihen liittyvien tietojen poistamista milloin tahansa.</li>
+        <li>Tilin poistaminen: <a href="/poista-tili">kauppalistapro.fi/poista-tili</a></li>
+        <li>Maksutietoja säilytetään Suomen kirjanpitolain edellyttämän ajan (7 vuotta).</li>
+      </ul>
+
+      <h2>7. Rekisteröidyn oikeudet (GDPR)</h2>
+      <p>EU-kansalaisena sinulla on oikeus:</p>
+      <div class="rights-grid">
+        <div class="right-item"><strong>Oikeus saada tietoja</strong>Pääsy henkilötietoihisi</div>
+        <div class="right-item"><strong>Oikeus oikaista</strong>Virheellisten tietojen korjaaminen</div>
+        <div class="right-item"><strong>Oikeus poistaa</strong>Tietojesi poistaminen</div>
+        <div class="right-item"><strong>Oikeus vastustaa</strong>Tietojenkäsittelyn vastustaminen</div>
+        <div class="right-item"><strong>Siirto-oikeus</strong>Tietojesi siirtäminen</div>
+        <div class="right-item"><strong>Peruuttamisoikeus</strong>Suostumuksen peruuttaminen</div>
+      </div>
+      <p>Käyttääksesi näitä oikeuksia, ota yhteyttä: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+
+      <h2>8. Tietoturva</h2>
+      <p>Suojaamme tietosi käyttämällä:</p>
+      <ul>
+        <li>Salattuja yhteyksiä (HTTPS/SSL)</li>
+        <li>Firebase Security Rules — käyttäjät pääsevät käsiksi vain omiin listoihinsa</li>
+        <li>Suojattu todennus Firebase Authenticationin kautta</li>
+      </ul>
+
+      <h2>9. Lasten yksityisyydensuoja</h2>
+      <p>Sovellusta voivat käyttää vähintään 13-vuotiaat käyttäjät vanhemman suostumuksella. Emme tietoisesti kerää tietoja alle 13-vuotiailta lapsilta.</p>
+
+      <h2>10. Muutokset tietosuojaselosteeseen</h2>
+      <p>Ilmoitamme käyttäjille merkittävistä muutoksista sovelluksen kautta. Uusin versio on aina saatavilla osoitteessa <a href="/privacy">kauppalistapro.fi/privacy</a>.</p>
+
+      <h2>11. Yhteystiedot ja valitukset</h2>
+      <p>Tietosuoja-asioissa: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+      <p>Sinulla on oikeus tehdä valitus tietosuojavaltuutetulle: <a href="https://tietosuoja.fi" target="_blank">tietosuoja.fi</a></p>
+    </div>
+
+    <!-- ENGLISH -->
+    <div class="content" id="content-en">
+      <h2>1. Data Controller</h2>
+      <p>Oy Westmanns Ab (Business ID: 3296059-1), Finland<br>Email: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+
+      <h2>2. Data We Collect</h2>
+      <p><strong>Account data:</strong></p>
+      <ul>
+        <li>Email address</li>
+        <li>Authentication data (managed by Firebase Authentication)</li>
+        <li>Display name (optional)</li>
+      </ul>
+      <p><strong>App usage data:</strong></p>
+      <ul>
+        <li>Shopping lists and their contents</li>
+        <li>List members and sharing settings</li>
+        <li>App preferences and settings</li>
+      </ul>
+      <p><strong>Technical data:</strong></p>
+      <ul>
+        <li>Device type and Android version</li>
+        <li>App version</li>
+        <li>IP address (collected by Firebase)</li>
+      </ul>
+      <p><strong>Biometric data (optional):</strong> If you enable biometric authentication, this is processed entirely on your device. We do not receive or store biometric data.</p>
+
+      <h2>3. How We Use Your Data</h2>
+      <p>We use your data to:</p>
+      <ul>
+        <li>Provide real-time list synchronization</li>
+        <li>Enable list sharing between users</li>
+        <li>Improve the App's features and performance</li>
+        <li>Send important service notifications</li>
+      </ul>
+
+      <h2>4. AI Features (Pro+)</h2>
+      <p>If you use the AI assistant feature, your shopping list data may be processed by Anthropic's Claude API to generate suggestions. We do not store this data after processing.</p>
+
+      <h2>5. Data Sharing</h2>
+      <p>We share data with:</p>
+      <ul>
+        <li><strong>Firebase (Google)</strong> — Authentication, real-time database, and hosting</li>
+        <li><strong>Anthropic</strong> — AI features (Pro+ only)</li>
+        <li><strong>Stripe</strong> — Payment processing (Pro+ subscriptions)</li>
+      </ul>
+      <p>We do not sell your personal data to third parties.</p>
+
+      <h2>6. Data Retention</h2>
+      <ul>
+        <li>Your account and list data is retained as long as your account is active.</li>
+        <li>You may request deletion of your account and all associated data at any time.</li>
+        <li>Account deletion page: <a href="/poista-tili">kauppalistapro.fi/poista-tili</a></li>
+        <li>Payment records are retained as required by Finnish accounting law (7 years).</li>
+      </ul>
+
+      <h2>7. Your Rights (GDPR)</h2>
+      <p>As an EU resident, you have the right to:</p>
+      <div class="rights-grid">
+        <div class="right-item"><strong>Access</strong>View your personal data</div>
+        <div class="right-item"><strong>Correct</strong>Fix inaccurate data</div>
+        <div class="right-item"><strong>Delete</strong>Erase your data</div>
+        <div class="right-item"><strong>Object</strong>Object to processing</div>
+        <div class="right-item"><strong>Portability</strong>Transfer your data</div>
+        <div class="right-item"><strong>Withdraw</strong>Revoke consent</div>
+      </div>
+      <p>To exercise these rights, contact: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+
+      <h2>8. Data Security</h2>
+      <p>We protect your data using:</p>
+      <ul>
+        <li>Encrypted connections (HTTPS/SSL)</li>
+        <li>Firebase Security Rules — users can only access their own lists</li>
+        <li>Secure authentication via Firebase Authentication</li>
+      </ul>
+
+      <h2>9. Children's Privacy</h2>
+      <p>The App may be used by users aged 13 and above with parental consent. We do not knowingly collect data from children under 13.</p>
+
+      <h2>10. Changes to Privacy Policy</h2>
+      <p>We will notify users of significant changes via the App. The latest version is always available at <a href="/privacy">kauppalistapro.fi/privacy</a>.</p>
+
+      <h2>11. Contact & Complaints</h2>
+      <p>For privacy concerns: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+      <p>You have the right to lodge a complaint with the Finnish Data Protection Ombudsman: <a href="https://tietosuoja.fi" target="_blank">tietosuoja.fi</a></p>
+    </div>
+
+    <!-- SWEDISH -->
+    <div class="content" id="content-sv">
+      <h2>1. Personuppgiftsansvarig</h2>
+      <p>Oy Westmanns Ab (FO-nummer: 3296059-1), Finland<br>E-post: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+
+      <h2>2. Uppgifter vi samlar in</h2>
+      <p><strong>Kontouppgifter:</strong></p>
+      <ul>
+        <li>E-postadress</li>
+        <li>Autentiseringsdata (hanteras av Firebase Authentication)</li>
+        <li>Visningsnamn (valfritt)</li>
+      </ul>
+      <p><strong>Appanvändningsdata:</strong></p>
+      <ul>
+        <li>Inköpslistor och deras innehåll</li>
+        <li>Listmedlemmar och delningsinställningar</li>
+        <li>Appinställningar</li>
+      </ul>
+      <p><strong>Tekniska uppgifter:</strong></p>
+      <ul>
+        <li>Enhetstyp och Android-version</li>
+        <li>Appversion</li>
+        <li>IP-adress (insamlad av Firebase)</li>
+      </ul>
+      <p><strong>Biometriska uppgifter (valfritt):</strong> Om du aktiverar biometrisk autentisering behandlas detta helt på din enhet. Vi tar inte emot eller lagrar biometriska uppgifter.</p>
+
+      <h2>3. Hur vi använder dina uppgifter</h2>
+      <p>Vi använder dina uppgifter för att:</p>
+      <ul>
+        <li>Tillhandahålla synkronisering av listor i realtid</li>
+        <li>Möjliggöra listdelning mellan användare</li>
+        <li>Förbättra appens funktioner och prestanda</li>
+        <li>Skicka viktiga servicemeddelanden</li>
+      </ul>
+
+      <h2>4. AI-funktioner (Pro+)</h2>
+      <p>Om du använder AI-assistentfunktionen kan dina inköpslistdata behandlas av Anthropics Claude API för att generera förslag. Vi lagrar inte denna data efter behandling.</p>
+
+      <h2>5. Datadelning</h2>
+      <p>Vi delar data med:</p>
+      <ul>
+        <li><strong>Firebase (Google)</strong> — Autentisering, realtidsdatabas och hosting</li>
+        <li><strong>Anthropic</strong> — AI-funktioner (endast Pro+)</li>
+        <li><strong>Stripe</strong> — Betalningshantering (Pro+-prenumerationer)</li>
+      </ul>
+      <p>Vi säljer inte dina personuppgifter till tredje part.</p>
+
+      <h2>6. Datalagring</h2>
+      <ul>
+        <li>Ditt konto och listdata lagras så länge ditt konto är aktivt.</li>
+        <li>Du kan begära radering av ditt konto och all tillhörande data när som helst.</li>
+        <li>Kontoradering: <a href="/poista-tili">kauppalistapro.fi/poista-tili</a></li>
+        <li>Betalningsposter sparas enligt finsk bokföringslag (7 år).</li>
+      </ul>
+
+      <h2>7. Dina rättigheter (GDPR)</h2>
+      <p>Som EU-medborgare har du rätt att:</p>
+      <div class="rights-grid">
+        <div class="right-item"><strong>Tillgång</strong>Se dina personuppgifter</div>
+        <div class="right-item"><strong>Rätta</strong>Korrigera felaktiga uppgifter</div>
+        <div class="right-item"><strong>Radera</strong>Ta bort dina uppgifter</div>
+        <div class="right-item"><strong>Invända</strong>Invända mot behandling</div>
+        <div class="right-item"><strong>Portabilitet</strong>Överföra dina uppgifter</div>
+        <div class="right-item"><strong>Återkalla</strong>Återkalla samtycke</div>
+      </div>
+      <p>För att utöva dessa rättigheter, kontakta: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+
+      <h2>8. Datasäkerhet</h2>
+      <p>Vi skyddar dina uppgifter med:</p>
+      <ul>
+        <li>Krypterade anslutningar (HTTPS/SSL)</li>
+        <li>Firebase Security Rules — användare kan bara komma åt sina egna listor</li>
+        <li>Säker autentisering via Firebase Authentication</li>
+      </ul>
+
+      <h2>9. Barns integritet</h2>
+      <p>Appen får användas av användare från 13 år med föräldrarnas tillstånd. Vi samlar inte medvetet in data från barn under 13 år.</p>
+
+      <h2>10. Ändringar av integritetspolicyn</h2>
+      <p>Vi meddelar användarna om betydande ändringar via Appen. Den senaste versionen finns alltid på <a href="/privacy">kauppalistapro.fi/privacy</a>.</p>
+
+      <h2>11. Kontakt och klagomål</h2>
+      <p>För integritetsfrågor: <a href="mailto:info@westmanns.fi">info@westmanns.fi</a></p>
+      <p>Du har rätt att lämna in ett klagomål till den finska Dataskyddsombudsmannen: <a href="https://tietosuoja.fi" target="_blank">tietosuoja.fi</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Etusivu</a>
+      <a href="/terms">Käyttöehdot</a>
+      <a href="/privacy">Tietosuoja</a>
+      <a href="mailto:info@westmanns.fi">info@westmanns.fi</a>
+    </div>
+    <p>© 2026 Kauppalista Pro · Oy Westmanns Ab</p>
+  </footer>
+
+  <script>
+    function setLang(lang, btn) {
+      document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('content-' + lang).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
