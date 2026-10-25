@@ -427,6 +427,11 @@
     <h2 data-fi="Ota yhteyttä" data-en="Contact us" data-sv="Kontakta oss">Ota yhteyttä</h2>
     <p data-fi="Onko sinulla kysyttävää, palautetta tai kehitysideoita? Lähetä meille viesti!" data-en="Do you have questions, feedback or development ideas? Send us a message!" data-sv="Har du frågor, feedback eller idéer? Skicka oss ett meddelande!">Onko sinulla kysyttävää, palautetta tai kehitysideoita? Lähetä meille viesti!</p>
     <form class="contact-form" action="https://formspree.io/f/xjgavagd" method="POST" onsubmit="handleSubmit(event)">
+      <!-- Honeypot-kenttä botteja vastaan: piilossa oikeilta käyttäjiltä, mutta
+           yksinkertaiset lomaketäyttöbotit täyttävät sen koska eivät suorita CSS:ää.
+           Formspree hylkää lähetyksen automaattisesti jos tämä kenttä ei ole tyhjä,
+           eikä se kuluta kuukausittaista lähetyskiintiötä. -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="form-group">
         <label data-fi="Nimi" data-en="Name" data-sv="Namn">Nimi</label>
         <input type="text" name="name" placeholder="Etunimi Sukunimi" required />
