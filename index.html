@@ -571,6 +571,10 @@
 
   <script>
   (function() {
+    // HUOM: tätä muuttujaa ei enää lähetetä funktiolle - järjestelmäkehote on
+    // nyt kiinteä palvelimella (Kauppalista_Git/functions/index.js,
+    // CHAT_SYSTEM_PROMPT). Muokkaa kehotetta SIELLÄ, ei tässä - tämä kopio
+    // jätettiin vain dokumentaatioksi/historiaksi.
     const SYSTEM_PROMPT = `Olet Kauppalista Pro -palvelun innostunut myyntiassistentti. Tehtäväsi on auttaa käyttäjiä ja ohjata heitä kokeilemaan Pro+-versiota.
 
 Kauppalista Pro -palvelu:
@@ -688,13 +692,12 @@ Ohjeet:
       sendBtn.disabled = true;
       addTyping();
 
+      // model/max_tokens/system ovat nyt kiinteitä palvelimella (functions/index.js) -
+      // tämä lähettää vain viestihistorian.
       fetch('https://us-central1-kauppalista-pro.cloudfunctions.net/claudeChat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 300,
-          system: SYSTEM_PROMPT,
           messages: history.filter(function(m) { return m.role !== 'assistant' || history.indexOf(m) > 0; })
         })
       })
