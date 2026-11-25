@@ -95,16 +95,33 @@
       --emerald: #059669; --emerald-light: #d1fae5; --emerald-dark: #047857;
       --slate: #0f172a; --slate-mid: #334155; --bg: #f8fafc; --yellow: #fbbf24;
       --pink: #f43f5e;
+      --xmas-red: #b91c1c; --xmas-red-dark: #7f1d1d;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--slate); overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif; color: var(--slate); overflow-x: hidden;
+      background-color: var(--bg);
+      /* JOULUTILAUS 2026: himmeä koko sivun taustakuvio (joulukello, lumihiutale,
+         joulupukin lakki) - poisto tammikuussa: poista nämä 3
+         background-*-riviä, background-color jää ennalleen. */
+      background-image: url('xmas-pattern.svg');
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      background-attachment: fixed;
+    }
 
-    .lang-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: flex-end; padding: 14px 32px; background: rgba(248,250,252,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    /* JOULUTILAUS 2026 - kevyt kausibanneri. Poisto tammikuussa: poista
+       .xmas-banner-div HTML:stä + palauta .lang-bar top: 0 + .hero
+       padding-top: 120px (ks. kommentit alla). Ei kosketa title/meta/
+       JSON-LD-nimeä - SEO pysyy koskemattomana. */
+    .xmas-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 101; background: linear-gradient(90deg, var(--xmas-red), var(--xmas-red-dark)); color: white; text-align: center; padding: 9px 16px; font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; }
+
+    .lang-bar { position: fixed; top: 38px; left: 0; right: 0; z-index: 100; display: flex; justify-content: flex-end; padding: 14px 32px; background: rgba(248,250,252,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); }
     .lang-btn { padding: 8px 18px; border-radius: 999px; border: 2px solid var(--emerald); background: transparent; color: var(--emerald); font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; cursor: pointer; transition: all 0.2s; }
     .lang-btn:hover { background: var(--emerald); color: white; }
 
-    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 24px 80px; position: relative; overflow: hidden; }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 158px 24px 80px; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(5,150,105,0.08) 0%, transparent 70%); }
     .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--emerald-light); color: var(--emerald-dark); font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
     .hero-title { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(2rem, 8vw, 6rem); line-height: 1; text-align: center; letter-spacing: 0.04em; max-width: 800px; margin-bottom: 24px; animation: fadeUp 0.6s ease 0.1s both; }
@@ -216,6 +233,9 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     @media (max-width: 640px) {
+      .xmas-banner { font-size: 11px; padding: 10px 10px; line-height: 1.4; }
+      .lang-bar { top: 52px; }
+      .hero { padding-top: 172px; }
       .pro-card { padding: 40px 28px; }
       .cta-group { flex-direction: column; align-items: center; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
@@ -225,6 +245,11 @@
   </style>
 </head>
 <body>
+
+  <!-- JOULUTILAUS 2026: kevyt kausibanneri. Poisto tammikuussa - poista tämä
+       div sekä .xmas-banner/.lang-bar(top)/.hero(padding-top) -säännöt
+       yllä olevasta <style>-lohkosta. Ei kosketa title/meta/JSON-LD-nimeä. -->
+  <div class="xmas-banner">🔔 <span data-fi="Joulun ajan KauppalistaPro on JoululistaPro!" data-en="For the holidays, Shopping List Pro becomes Christmas List Pro!" data-sv="Under julen är Inköpslista Pro Jullistan Pro!">Joulun ajan KauppalistaPro on JoululistaPro!</span> 🎄</div>
 
   <nav class="lang-bar">
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">🇬🇧 EN</button>
